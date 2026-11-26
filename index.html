@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#9ccfff">
+<!-- Tu logo como favicon de la pestaña -->
+<link rel="icon" type="image/png" href="logo.png">
+<title>Para Mi Niña Ximena ☁️💗</title>
+
+<style>
+:root{
+  --sky:#b9e0ff;
+  --sky2:#e9f6ff;
+  --blue:#6aa9df;
+  --deep:#315a82;
+  --pink:#f4a9ca;
+  --ink:#38516b;
+  --glass:rgba(255,255,255,.78);
+  --shadow:0 16px 42px rgba(64,119,165,.16);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--ink);
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  background:linear-gradient(160deg,#dff2ff 0%,#b9ddff 48%,#fce8f3 100%);
+  overflow-x:hidden;
+}
+
+body:before,body:after{
+  content:"";
+  position:fixed;
+  z-index:-2;
+  border-radius:50%;
+  filter:blur(2px);
+  background:rgba(255,255,255,.42);
+  width:330px;
+  height:150px;
+}
+
+body:before{
+  top:8%;
+  left:-90px;
+}
+
+body:after{
+  right:-110px;
+  bottom:10%;
+  width:420px;
+  height:190px;
+}
+
+main{
+  min-height:100vh;
+  max-width:1000px;
+  margin:auto;
+  padding:48px 18px 70px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+}
+
+h1{
+  font-family:Georgia,serif;
+  color:#477eaf;
+  text-align:center;
+  font-size:clamp(2.2rem,6vw,4rem);
+  margin:6px 0 2px 0;
+}
+
+.month-title{
+  font-family:Georgia,serif;
+  color:#6497c4;
+  text-align:center;
+  font-size:clamp(1.3rem, 3vw, 1.8rem);
+  margin:0 0 12px 0;
+  font-weight:normal;
+  font-style:italic;
+}
+
+.subtitle{
+  text-align:center;
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-size:1.1rem;
+  max-width:620px;
+  line-height:1.6;
+}
+
+.sky-icon{
+  font-size:2.6rem;
+  animation:float 3s ease-in-out infinite;
+}
+
+.tagline{
+  color:#6386a6;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-size:.72rem;
+  font-weight:bold;
+  margin-top:15px;
+}
+
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:16px;
+  width:100%;
+  max-width:880px;
+  margin:28px 0;
+}
+
+.card{
+  flex: 1 1 200px;
+  max-width: 210px;
+  min-height:150px;
+  border:1px solid #fff;
+  background:var(--glass);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:18px 12px;
+  color:var(--ink);
+  font:inherit;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  transition:transform .2s,box-shadow .2s;
+  backdrop-filter:blur(10px);
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px #477eaf33;
+}
+
+.card .emoji{font-size:2.2rem}
+.card strong{font-size:.95rem; text-align:center;}
+
+.timer,.note{
+  width:min(600px,100%);
+  background:var(--glass);
+  border:1px solid #fff;
+  border-radius:24px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  text-align:center;
+  backdrop-filter:blur(10px);
+}
+
+.timer h2{
+  font-size:.85rem;
+  letter-spacing:2px;
+  color:#6497c4;
+  margin:0 0 14px;
+}
+
+.time-values{
+  display:flex;
+  justify-content:center;
+  gap:clamp(10px,4vw,24px);
+  flex-wrap:wrap;
+}
+
+.time-values div{
+  min-width:70px;
+}
+
+.time-values b{
+  display:block;
+  font-size:clamp(1.2rem,3.5vw,1.8rem);
+  color:#538fc3;
+}
+
+.time-values span{
+  font-size:.78rem;
+  color:#7894ad;
+}
+
+.exact-time-note{
+  margin:16px 0 0;
+  font-size:.78rem;
+  line-height:1.5;
+  color:#6d8ea9;
+}
+
+.exact-time-note b{
+  color:#538fc3;
+}
+
+.note{
+  margin-top:22px;
+  font-family:Georgia,serif;
+  font-style:italic;
+  line-height:1.6;
+}
+
+footer{
+  margin-top:26px;
+  color:#6686a4;
+  font-size:.85rem;
+  text-align:center;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(48,83,117,.48);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:10;
+}
+
+.modal.show{display:flex}
+
+.modal-box{
+  position:relative;
+  width:min(600px,100%);
+  max-height:88vh;
+  overflow:auto;
+  background:linear-gradient(150deg,#fff,#f0f8ff);
+  border:1px solid white;
+  border-radius:25px;
+  padding:28px;
+  box-shadow:0 24px 70px #254e7755;
+}
+
+.modal-box h2{
+  text-align:center;
+  color:#5489b6;
+  font-family:Georgia,serif;
+  margin:0 25px 18px;
+}
+
+.modal-box p{
+  line-height:1.8;
+  white-space:pre-wrap;
+}
+
+.close{
+  position:absolute;
+  right:14px;
+  top:8px;
+  border:0;
+  background:none;
+  color:#588bb5;
+  font-size:2rem;
+  cursor:pointer;
+}
+
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  margin-top:14px;
+}
+
+.photo-frame{
+  position:relative !important;
+  display:block !important;
+  min-width:0;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:16px !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.photo-frame::after{
+  content:"♡";
+  position:absolute;
+  right:12px;
+  top:10px;
+  z-index:2;
+  color:#ffffff;
+  text-shadow:0 1px 5px rgba(35,91,139,.8);
+  font-size:20px;
+  line-height:1;
+  pointer-events:none;
+}
+.photo-frame img{
+  cursor:zoom-in;
+  border:4px solid #8fc5ee;
+  outline:2px solid #dcefff;
+  outline-offset:-7px;
+  border-radius:15px;
+  box-shadow:0 3px 12px rgba(69,133,184,.2);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.photo-frame img:hover{
+  transform:scale(1.015);
+  box-shadow:0 6px 17px rgba(69,133,184,.28);
+}
+.photo-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  background:rgba(16,35,55,.88);
+  cursor:zoom-out;
+}
+.photo-lightbox.show{display:flex}
+.photo-lightbox img{
+  display:block;
+  max-width: min(94vw, 1400px);
+  max-height: 90vh;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  border:4px solid #a8d5f5;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 12px 45px rgba(0,0,0,.4);
+  cursor:default;
+}
+.photo-lightbox-close{
+  position:absolute;
+  top:12px;
+  right:20px;
+  border:0;
+  background:rgba(255,255,255,.15);
+  color:white;
+  border-radius:50%;
+  width:42px;
+  height:42px;
+  font-size:30px;
+  line-height:1;
+  cursor:pointer;
+}
+.photo-placeholder{
+  min-height:190px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  border:1px dashed #b9d9ef;
+  border-radius:12px;
+  background:#f4faff;
+  color:#7899b5;
+  text-align:center;
+  font-size:.85rem;
+}
+
+.photo-caption{
+  margin:9px 4px 3px;
+  color:#587b99;
+  font-size:.91rem;
+  line-height:1.5;
+  text-align:center;
+}
+
+.photo-grid img{
+  display:block;
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  border-radius:11px;
+  background:#e7f3fc;
+}
+
+.audio{
+  width:100%;
+  margin:12px 0;
+}
+
+.music-player{
+  position:fixed; left:50%; bottom:16px; transform:translateX(-50%); z-index:30;
+  width:min(460px, calc(100% - 24px)); padding:15px 16px 13px;
+  border:1px solid rgba(255,255,255,.95); border-radius:22px;
+  background:rgba(245,251,255,.94); box-shadow:0 12px 35px rgba(49,90,130,.22);
+  backdrop-filter:blur(12px); cursor:grab; user-select:none;
+}
+.music-player:active{cursor:grabbing;}
+.music-close-btn{position:absolute;top:8px;right:12px;background:rgba(226,241,255,.8);border:1px solid #d4e9fa;border-radius:50%;width:27px;height:27px;color:#477eaf;font-size:1.1rem;cursor:pointer;font-weight:bold;z-index:5;}
+.music-close-btn:hover,.music-control-btn:hover{background:#dcefff;color:#315a82;}
+.music-player strong{display:block;margin:0 32px 10px;color:#477eaf;text-align:center;font-family:Georgia,serif;font-size:.98rem;}
+.music-controls{display:flex;align-items:center;justify-content:center;gap:9px;margin:8px 0;}
+.music-control-btn{border:1px solid #c8e2f7;border-radius:999px;background:linear-gradient(180deg,#fff,#e8f5ff);color:#477eaf;font-weight:bold;cursor:pointer;min-width:38px;height:34px;padding:0 12px;box-shadow:0 3px 9px rgba(74,132,180,.12);}
+.music-control-btn.main{width:42px;height:38px;background:linear-gradient(135deg,#8fc5ed,#f2b9d4);border-color:#b7d9f1;color:#fff;font-size:1rem;}
+.music-progress-row{display:flex;align-items:center;gap:8px;color:#52799d;font-size:.72rem;font-variant-numeric:tabular-nums;}
+.music-progress-row input{flex:1;min-width:0;accent-color:#78add8;cursor:pointer;}
+.song-volume-row{display:flex;align-items:center;justify-content:center;gap:9px;margin:9px auto 2px;color:#648db2;font-size:.85rem;}
+.song-volume-row input{width:min(180px,65%);accent-color:#e5a9ca;cursor:pointer;}
+.music-player audio{display:none;}
+.ambient-tools{position:fixed;right:16px;bottom:16px;z-index:29;display:flex;align-items:center;gap:9px;padding:8px 11px;border:1px solid rgba(255,255,255,.8);border-radius:18px;background:rgba(239,248,255,.68);backdrop-filter:blur(10px);box-shadow:0 5px 18px rgba(49,90,130,.12);color:#426d94;}
+.ambient-hint{font-size:.75rem;line-height:1.25;color:#426d94;opacity:.88;white-space:nowrap;}
+.ambient-pause-btn{width:31px;height:31px;flex:0 0 31px;border:1px solid #c6e0f4;border-radius:50%;background:rgba(255,255,255,.88);color:#5489b6;font-size:.9rem;font-weight:bold;cursor:pointer;box-shadow:0 2px 7px rgba(49,90,130,.12);}
+.ambient-volume{width:78px;accent-color:#77add9;cursor:pointer;}
+@media(max-width:600px){.ambient-tools{right:9px;bottom:9px;gap:6px;padding:6px 8px}.ambient-hint{font-size:.65rem}.ambient-volume{width:58px}.music-player{bottom:65px}}
+
+.btn{
+  border:0;
+  border-radius:999px;
+  padding:12px 20px;
+  background:#77add9;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  margin:7px;
+}
+
+.btn:hover{background:#548fc1}
+
+.answer{
+  display:block;
+  width:100%;
+  text-align:left;
+  margin:9px 0;
+  padding:12px 15px;
+  border:1px solid #c8e0f4;
+  border-radius:14px;
+  background:#fff;
+  color:#466783;
+  cursor:pointer;
+}
+
+.answer:hover{background:#eaf5ff}
+.answer:disabled{opacity:.7;cursor:default}
+
+.envelope-card-item {
+  background: #ffffff;
+  border: 1px solid #c8e0f4;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(84, 137, 182, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.envelope-card-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(84, 137, 182, 0.2);
+}
+
+.envelope-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: bold;
+  color: #477eaf;
+  font-size: 1.05rem;
+}
+
+.envelope-body {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #d6e7f8;
+  color: #466783;
+  line-height: 1.6;
+}
+
+.explode-shine {
+  animation: shineExplosion 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.envelope-explosion {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  z-index: 1000000;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.envelope-explosion::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 34px;
+  height: 34px;
+  border: 4px solid rgba(255, 190, 225, .95);
+  border-radius: 50%;
+  box-shadow: 0 0 22px 9px rgba(255, 177, 220, .75), 0 0 48px 18px rgba(151, 213, 255, .55);
+  transform: translate(-50%, -50%) scale(.1);
+  animation: envelopeShockwave 1.15s cubic-bezier(.12,.72,.2,1) forwards;
+}
+
+.envelope-explosion::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 18px 12px #fff, 0 0 42px 25px rgba(255, 174, 220, .95), 0 0 75px 38px rgba(137, 204, 255, .72);
+  transform: translate(-50%, -50%) scale(.2);
+  animation: envelopeFlash .72s ease-out forwards;
+}
+
+.envelope-burst-spark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  pointer-events: none;
+  font-size: var(--spark-size, 27px);
+  line-height: 1;
+  filter: drop-shadow(0 0 8px rgba(255, 190, 230, .95));
+  animation: envelopeBurst 1.45s cubic-bezier(.12,.72,.2,1) forwards;
+}
+
+@keyframes envelopeBurst {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.15) rotate(-25deg); }
+  12% { opacity: 1; transform: translate(-50%, -50%) scale(1.35) rotate(10deg); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--burst-x)), calc(-50% + var(--burst-y))) scale(.55) rotate(var(--burst-rotate)); }
+}
+
+@keyframes envelopeShockwave {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(.1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(10); }
+}
+
+@keyframes envelopeFlash {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.2); }
+  18% { opacity: 1; transform: translate(-50%, -50%) scale(1.8); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+}
+
+@keyframes shineExplosion {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-10px);
+    filter: drop-shadow(0 0 20px #ffb6c1) brightness(1.8);
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 15px #87ceeb) brightness(1.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: drop-shadow(0 0 0px transparent) brightness(1);
+  }
+}
+
+.hidden { display: none !important; }
+
+.float-heart{
+  position:fixed;
+  bottom:-40px;
+  z-index:-1;
+  pointer-events:none;
+  animation:rise linear forwards;
+  opacity:.8;
+}
+
+.sparkle{
+  position:fixed;
+  pointer-events:none;
+  z-index:20;
+  animation:spark 1.1s ease-out forwards;
+}
+
+.click-sticker {
+  position: fixed;
+  width: 51px;
+  height: 51px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 99999;
+  filter: drop-shadow(0 5px 12px rgba(45, 70, 110, 0.28));
+  transform-origin: center;
+  animation: stickerAppear 1.7s ease-out forwards;
+}
+
+@keyframes stickerAppear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.72) rotate(-7deg);
+  }
+  14% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08) rotate(2deg);
+  }
+  28% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  76% {
+    opacity: 1;
+    transform: translate(-50%, -58%) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -78%) scale(0.96) rotate(0deg);
+  }
+}
+
+@keyframes float{
+  50%{transform:translateY(-9px)}
+}
+
+@keyframes rise{
+  to{
+    transform:translateY(-115vh) rotate(25deg);
+    opacity:0;
+  }
+}
+
+@keyframes spark{
+  to{
+    transform:translateY(-65px) scale(1.7);
+    opacity:0;
+  }
+}
+
+@media(max-width:380px){
+  .cards{gap:10px}
+  .card{
+    flex: 1 1 140px;
+    min-height:125px;
+    padding:12px 8px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+  <div class="sky-icon">☁️ 🩵 ☁️</div>
+
+  <div class="tagline">
+    un pequeño universo hecho para ti y para recordar nuestros momentos bonitos. 🩵
+  </div>
+
+  <h1 id="pageTitle">Para Mi Niña Ximena</h1>
+  <div class="month-title">Feliz Segundo Mes Beibi :)</div>
+
+  <p class="subtitle" id="subtitle">
+    Entre tantos cielos y estrellas mi lugar favorito y persona favorita siempre seas tu mi vida. 🩵
+  </p>
+
+  <section class="cards">
+
+    <button class="card" id="letterBtn">
+      <span class="emoji">💌</span>
+      <strong>Una carta para ti beibi</strong>
+    </button>
+
+    <button class="card" id="envelopeBtn">
+      <span class="emoji">✉️</span>
+      <strong>Sobres sorpresa</strong>
+    </button>
+
+    <button class="card" id="musicBtn">
+      <span class="emoji">🎧</span>
+      <strong>Nuestra canción</strong>
+    </button>
+
+    <button class="card" id="photosBtn">
+      <span class="emoji">📸</span>
+      <strong>Nuestros recuerdos</strong>
+    </button>
+
+    <button class="card" id="quizBtn">
+      <span class="emoji">🌷</span>
+      <strong>¿Cuánto nos conocemos?</strong>
+    </button>
+
+    <button class="card" id="surpriseBtn">
+      <span class="emoji">🎁</span>
+      <strong>Una sorpresa final</strong>
+    </button>
+
+  </section>
+
+  <section class="timer">
+
+    <h2>DESDE QUE COMENZÓ NUESTRA HISTORIA</h2>
+
+    <div class="time-values">
+
+      <div>
+        <b id="months">0</b>
+        <span>meses</span>
+      </div>
+
+      <div>
+        <b id="days">0</b>
+        <span>días</span>
+      </div>
+
+      <div>
+        <b id="hours">0</b>
+        <span>horas</span>
+      </div>
+
+      <div>
+        <b id="minutes">0</b>
+        <span>minutos</span>
+      </div>
+
+      <div>
+        <b id="seconds">0</b>
+        <span>segundos</span>
+      </div>
+
+    </div>
+
+    <p class="exact-time-note" id="exactTimeNote"></p>
+
+  </section>
+
+  <div class="note">
+    “No necesito una vida fantastica, solo necesito compartirla contigo para que se vuelva perfecta.” 💝
+  </div>
+
+  <footer>
+    Hecho con mucho cariño para Mi Niña Ximena :3 · 26.09.2026 · 21:39 (Hora De México Meridazzzzz) 💗
+  </footer>
+
+</main>
+
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+  <div class="modal-box">
+
+    <button class="close" id="closeModal" aria-label="Cerrar">×</button>
+
+    <h2 id="modalTitle">Para ti 💗</h2>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+</div>
+
+<audio id="ambientMusic" src="musica-fondo.mp3" loop autoplay muted preload="auto"></audio>
+<audio id="openActionSound" src="abrir.mp3" preload="auto"></audio>
+<audio id="generalClickSound" src="click.mp3" preload="auto"></audio>
+<audio id="answerSound" src="respuesta.mp3" preload="auto"></audio>
+<audio id="errorSound" src="error.mp3" preload="auto"></audio>
+
+<div class="music-player hidden" id="musicPlayer">
+  <button class="music-close-btn" id="closeMusicBtn" aria-label="Cerrar reproductor">×</button>
+  <strong id="songTitle">🎧 Nuestra canción</strong>
+  <audio id="backgroundMusic" preload="metadata"></audio>
+  <div class="music-progress-row">
+    <span id="songCurrentTime">0:00</span>
+    <input id="songProgress" type="range" min="0" max="100" value="0" aria-label="Progreso de la canción">
+    <span id="songDuration">0:00</span>
+  </div>
+  <div class="music-controls">
+    <button class="music-control-btn" id="prevSongBtn" aria-label="Canción anterior">⏮</button>
+    <button class="music-control-btn main" id="toggleSongBtn" aria-label="Pausar canción">Ⅱ</button>
+    <button class="music-control-btn" id="nextSongBtn" aria-label="Canción siguiente">⏭</button>
+  </div>
+  <div class="song-volume-row">
+    <span aria-hidden="true">🔊</span>
+    <input id="songVolumeSlider" type="range" min="0" max="100" value="100" aria-label="Volumen de Nuestra música">
+  </div>
+</div>
+
+<div class="ambient-tools" id="ambientTools">
+  <span class="ambient-hint">Presiona Para Pausar El Jazz Beibi :3</span>
+  <button class="ambient-pause-btn" id="ambientPauseBtn" aria-label="Pausar música de fondo">Ⅱ</button>
+  <input class="ambient-volume" id="ambientVolumeSlider" type="range" min="0" max="100" value="100" aria-label="Volumen de la música de fondo">
+</div>
+
+
+<script>
+
+const CONFIG = {
+
+  nombre: "Mi Niña Ximena",
+
+  // Este es el inicio que usa el contador grande.
+  // Así, el día 26 a las 00:00 hora de México/Mérida ya se marcará el mes completo.
+  fechaInicioContador: "2026-09-26T00:00:00-06:00",
+
+  // Esta es la hora exacta en que comenzó su historia: 21:39.
+  fechaInicio: "2026-09-26T21:39:00-06:00",
+
+  subtitulo: "Entre tantas personas y lugares mi lugar seguro siempre será donde estés tú. 💗💗💗",
+
+  tituloCarta: "Para Mi Niña Ximena 💌",
+
+  carta: `Mi niña Ximena: 💙💌
+
+El día de hoy cumplimos 2 meses y estoy realmente agradecido por todo el tiempo que hemos pasado juntos lado a lado. Sé que a veces puede ser difícil, pero estos momentos de dificultad son los que nos hacen más fuertes y profundos el uno con el otro. Te amo, Ximena, te amo más que nada en este mundo y espero cumplir muchísimos más meses, años, siglos y hasta el infinito contigo. Sé que puede sonar tonto, pero de verdad quisiera estar contigo hasta los confines del tiempo :) 🩵🩵🩵
+
+Quiero recordarte en esta carta que jamás estarás sola y siempre tendrás a un novio que te ame, respete, te atienda, esté pendiente de ti, te planche la ropa, te dé de comer en la boca, te bese, te abrace y te lama los cachetes. Corazón de melocotón, espero que este regalito te haga feliz de la misma forma que tú lo haces conmigo y quiero recordarte esto, jeje: este no será el único o último regalo de esta cantidad de esfuerzo, créeme, tesoro :3 💙💙💙
+
+Gracias por cada momento juntos, cada broma, cada sonrisa que me sacas y por formar parte de mis días. Desde el 26 de septiembre de 2026 a las 21:39 (Hora Mezzzico) comenzó una historia que quiero seguir llenando de recuerdos hermosos contigo. Y quisiera decir, Ximena, no me arrepiento y nunca lo haré de haber entablado una relación virtual. Aunque a veces tengamos conflictos por ello, sé que estar contigo, incluso teniéndolos, es lo mejor. Sé que podremos superarlos y amarnos. Gracias por dejarme ser tu pareja y por ser tú mi novia. 💗ྀི💗ྀི💗ྀི
+
+No importa cuántas estrellas haya en el cielo, siempre te buscaré a ti porque eres mi luna. 🌙✨💙
+Con muchísimo cariño y amor, Santiago Andrés Nath Muga. 💌🩵`,
+
+  canciones: [
+    { titulo: "Nuestra cancion bella 🎶", archivo: "nuestra-cancion.mp3" },
+    { titulo: "Otra rola bonita 💫", archivo: "nuestra-cancion2.mp3" },
+    { titulo: "NUESTRA CANCION FAVORITAAA :DDD cfff XDDDD", archivo: "nuestra-cancion3.mp3" }
+  ],
+
+  fotos: [
+    "foto1.jpg",
+    "foto2.jpg",
+    "foto3.jpg",
+    "foto4.jpg",
+    "foto5.jpg",
+    "foto6.jpg"
+  ],
+
+  textoFotos: "Pequeños recuerdos de nuestra bella relacion juntos. Cada uno tiene un lugar especial en mi corazon. 💗",
+  descripcionesFotos: [
+    "Un recuerdo de nuestro primer juntitos hecho por ti corazoncito <3.",
+    "Nuestras hijitas descansando, son tan lindas, van a crecer bien beshas :3.",
+    "Tu gatito bello, queria ponerlo en nuestra pagina por que se me hace precioso y forma parte de ti por lo tanto tambien de la relacion :).",
+    "El dia que estuvimos casi 12 horas en llamada en una sola, fue muy lindo haber pasado tanto tiempo contigo y espero poder pasar mas dias asi :D.",
+    "Una foto que tome para recordar nuestros momentos en los que jugamos tzzzb D:",
+    "Tu y yo juntitos cargandome jeje, estoy muy feliz a tu lado tesorito mio MUAAK UwU."
+  ],
+
+  sobres: [
+
+    {
+      titulo: "Abre cuando me extrañes",
+      mensaje: "Aunque no esté a tu lado en estos momentos fisicamente, quiero que recuerdes que eres muy importante para mí y la distancia es momentanea. Te mando todo mi amor corazoncito. Recuerda que jamas me ire de tu lado beibi si quieres hablar o hacer cualquier actividad lo podemos hacer juntos tesoro mio, yo Santiago Andres Nath Muga siempre siempre siempre estara a tu lado <3 💙💙💙💙"
+    },
+
+    {
+      titulo: "Abre cuando tengas un día difícil",
+      mensaje: "Respira tesoro. No todos los días tienen que ser perfectos, sé que puede llegar a ser molesto e irritante, pero tu novio siempre estará aquí para consolarte y calmarte, ¿sí mi amor? Recuerda esto amorcito, tu pro ellos nubs, tu sigma ellos omegas, tu eres la mejor en todo aspecto corazoncito mio, nunca olvides lo especial que eres para mi, para los demas y para ti misma, chi? <3. Espero que estas palabras te recuerden lo valiosa y capaz que eres. ✨✨✨✨✨"
+    },
+
+    {
+      titulo: "Abre cuando quieras sonreír",
+      mensaje: "¡Sorpresaaaaa! AMOOOOOR imagina que te estoy dando mil besitos y estamos juntitos abrazados, pronto será realidad,viviremos juntitos y no me despegare de ti jeje así que prepárate >:). Beibi imaginate cuando podamos besarnos ai si ke riko amorshito nos podremos besar infinitamente, ademas tambien quisiera poder salir a caminar juntitos amorcito mio, poder conocer lugares o simplemente ir a tomar airesito jeje, te amo, ¿lo sabes cierto?:3. No olvides sonreír corazón, tu sonrisa es preciosa :) 💫💫💫💫"
+    },
+
+    {
+      titulo: "Abre cuando te sientas triste",
+      mensaje: "Amorcito lindo no te preocupes, todo estará bien ¿Sí? Tienes a tu noviesote a tu lado siempre, nunca te dejaré sola y pase lo que pase yo te amaré. Por favor dime qué pasa amorcito para buscar una solución juntitos y consolarte, ¿Sí bebé? Quiero recordarte que eres una persona maravillosa y si algo te lastimó yo te consolaré, así como lo oyes beibi, TE AMOOOOOOOOOOO HABLEMOOOSHHH. <3 💗💗💗💗💗"
+    },
+
+    {
+      titulo: "Abre cuando quieras ver una broma chistosa",
+      mensaje: "Ok amor, ¿Qué le dice el niño del Oxxo a él Pepe? La verdad no sé qué poner en esta broma así que imagínatela, ¿lista :v? Ya ahora sí la broma buena: había una vez una vaca que comió vidrio, ¿no? Ya como sabrás, las vacas pues no comen vidrio porque pues son vacas jaja gracias, ya el caso es que cuando comió vidrio, al día siguiente la ordeñaron, jingle jingle, no saltes la cinemática amor. Cuando la ordeñaron... salió leche cortadaaa jajaja... jaja amorshito, ¿entiendes? ¿Leche cortada? ¿No? Ok. Te voy a tocar amor... 🗣️🗣️🗣️"
+    },
+
+    {
+      titulo: "Abre cuando quieras, eh, no sé, cuando quieras, eh, sí",
+      mensaje: "Maluma beibi, tú me partiste el corazoooon, ay mi korazaao. Oie, si lees esto es porque ya tenemos 2 meses. Te amo Ximena, te voy a llenar de besitos y abrazos engrangenados, además de eso... TE AMOOOOOOOOOOO BESEMONOS HASTA QUEDARNOS SIN PALABRAS :vvvvvvvvvvvvvvvvvvvvvvvvv TE AMOOOOOOOOOO MI NIÑA PRECIOSA TE AMO MTOEO MTOEAMTOAOMTTEVOYATOCAROADIOASIKDOAIKDOASID :ojitos void: 😻😻😻😻😻"
+    }
+
+  ],
+
+  preguntas: [
+
+    {
+      pregunta: "¿Qué fecha marca el comienzo de nuestra historia?",
+      opciones: [
+        "26 de septiembre de 2026",
+        "14 de septiembre de 2026",
+        "0 de enero del 30000000 :eyes:",
+        "¿Quien eres w? (Poca seriedad)"
+      ],
+      correcta: 0,
+      correctaTexto: "¡BIEN AMOR, si te sabes cuando nos volvimos novios sikmas :VVV eres la mas papu pro chiquituela 🌷🌷🌷",
+      errorPorOpcion: {
+        3: "Oie w eso nunca paso :VVVxdxdxcfff ELIGE BIEN FUCHI KAKA POPO PIS >:( 😾😾😾"
+      },
+      errorNormalTexto: "AMORSH SE QUE TE SABES ESTA PONTE SERIA, aun asi beibi intentalo de nuevo :3 👻👻👻"
+    },
+
+    {
+      pregunta: "¿Qué es lo que más quiero coleccionar contigo?",
+      opciones: [
+        "Besitos y abrazos",
+        "Caricias y mimos",
+        "Desvestirnos y abrazarnos jeje",
+        "Todas las anteriores 👀"
+      ],
+      correcta: 3,
+      correctaTexto: "¡Excelente amorshito lindo :D! 🩵🖤",
+      errorPersonalizado: "Chiquita lee bien o acaso... NO QUIERES HACER TODAS CONMIGO DDDD: AY NEEE ASKEE HETERE AY NEEEEVEEER 🤮🤮🤮"
+    },
+
+    {
+      pregunta: "¿Qué representa esta página?",
+      opciones: [
+        "Una carta de amor",
+        "Un recordatorio de nuestro amor",
+        "Un regalo para que jamas olvides lo especial que eres para mi"
+      ],
+      correcta: 2,
+      correctaTexto: "AMOR SISISISI ESA ES AMOR SISISI NO OLVIDES QUE TE AMO Y ERES LO MAS IMPORTANTE EN MI VIDA AISIIII :DDDD 💐💐💐",
+      errorPersonalizado: "Casi, esta esta tricky pero si le prestas atencion le daras al ojo, ¿ojo...? Creo que... me gusta ese nombre 👀👀👀"
+    },
+
+    {
+      pregunta: "¿Cuantas veces nos diremos que nos amamos?",
+      opciones: [
+        "tres o algo",
+        "yo digo que 10",
+        "como 120391",
+        "Infinito."
+      ],
+      correcta: 3,
+      correctaTexto: "SI BEIBI INFINITO FOREVER TU AND ME FOREVER INFINITO CHI CHI CHIS POR QUE NOS AMAREMOS SIEEEEMPRE ♾️♾️♾️",
+      errorPorOpcion: {
+        0: "¿¿¿¿3???? Que poco amor, yo daria unas 4 minimo pues mijilla, pongase ojos abiertos pa la proxima o le pincho 🐈‍⬛🐈‍⬛🐈‍⬛"
+      },
+      errorNormalTexto: "¿¿¿Oie amor pero tan pokito??? por ke no me amas amor akaso huelo feito? MAS AMOR MAS NOS AMAREMOS HASTA EL OTRO UNIVERSO Y VIDA... uwu 🌌🌌🌌"
+    },
+
+    {
+      pregunta: "¿Por que tu novio te ama tanto?",
+      opciones: [
+        "Porque soy linda",
+        "Porque busca algo de mi",
+        "Porque me ama incondicionalmente ai si"
+      ],
+      correcta: 2,
+      correctaTexto: "Siempre te amare a ti incondicionalmente mi vida preciosa, se que a veces puede ser dificil de verlo asi pero realmente quiero que sepas que te amo por sobre todo pronostico de verdad te amo corazoncito y me alegra que hayas elegido esto sabiendo que es lo correcto <3 🪷🪷🪷",
+      errorPersonalizado: "Oie pero tu novio jamas te amaria por solo una cualidad tuya, tu novio te ama incondicionalmente, independientemente de si tienes algo o no que ofrecer, te ama a ti y solo a ti, lo que eres como persona mas no lo que ofreces como una, TE AMA 🧙‍♂️🧙‍♂️🧙‍♂️ (Hm ni idea por que pongo un mago solo lo encontre y dije por que no)."
+    },
+
+    {
+      pregunta: "¿5 mas 5 patata es la frase que...?",
+      opciones: [
+        "El pepe mata",
+        "Gana a la pala",
+        "Tu ira desata"
+      ],
+      correcta: 2,
+      correctaTexto: "AMOR NO ERES NORMIE AMOR SISISI ERES PAPU PRO :vvv tambien sale sonic en esa animacion en un pizarron, debes de buscarlo JAJAJA 🦔🦔🦔 (imagina que es azul :V)",
+      errorPersonalizado: "BUUUU QUE NORMIEEEE BUUUU 🗣️🗣️🗣️🔥🔥🔥"
+    },
+
+    {
+      pregunta: "¿Tu me partiste el corazooon?",
+      opciones: [
+        "Ay mi corazaoo",
+        "Pero bebe no hay problema",
+        "Nono"
+      ],
+      correcta: 0,
+      correctaTexto: "BEIBIIII ESA SI ERA AIII MI CORAZAOOO MALUMA BEIBIII NO OLVIDES, PURO MALUMA PEDORRIN POR AQUI JEJEJEJE 🐀🐀🐀.",
+      errorPersonalizado: "¿La verdad no te culpo sabes? igual pa la proxima elige otra jeje ai mi korazaou 👀👀👀"
+    },
+
+    {
+      pregunta: "¿Cuanto nos amamos?",
+      opciones: [
+        "Tanto como para cuidarnos del uno al otro",
+        "Tanto que podriamos vivir nuestra vida juntos por siempre",
+        "Tanto como para entender que no hay forma simple de catalogar tanto amor"
+      ],
+      correcta: 2,
+      correctaTexto: "Si cielito, nuestro amor es boundless multiversal como rick prime 👀. Chiquitilla, estoy feliz de estar contigo y se que nos amaremos por siempre y para siempre corazoncito de melocoton. TE AMUUUU :DDDD 🤫🤫🤫",
+      errorPersonalizado: "Incluso deberias pensar que nuestro amor le gana a saitama y a goku juntos con miu kaioken x100 y dragon fist 🫩🫩🫩"
+    },
+
+    {
+      pregunta: "¿Cuantos hijos tenemos?",
+      opciones: [
+        "4, dicen",
+        "2, dicen",
+        "3, dicen"
+      ],
+      correcta: 2,
+      correctaTexto: "CHIII tenemos 3 hijitos los niños agugu bebe a los cuales cuidaremos con nuestro corazon alma y cuerpo, son nuestros beibis y los formaremos para ser niños del bien :3 👨🏿‍🍼👨🏿‍🍼👨🏿‍🍼 (Un hombre negro amamantando a un bebé, que turbio mano)",
+      errorPersonalizado: "Amor no te olvides, Ellen, Lilith ( La favorita ovio) y Angelica :3333 jeje suerte para la proxima tesoro mio <3."
+    },
+
+    {
+      pregunta: "¿Solo quiero que sepas que te amo ok tesoro mio jeje, si?",
+      opciones: [
+        "Fuchi kaka te voi a pegar",
+        "Amor ai si io te amo mas",
+        "Besemonos hasta perder el aire",
+        "Oye pero yo quiero hacer todas w"
+      ],
+      correcta: 3,
+      correctaTexto: "Pues si mi niña estoy feliz que quieras hacer todas jeje yo tambien quiero hacer todas asi que estoy feliz que compartamos el mismo deseo, te amo y te mando mil besitos <3 espero te haya gustado este jueguito que hice para ti beibi y recuerdes que nuestra relacion no se basa solo en una cosa, podemos ser tontos, podemos ponernos modo serio, podemos ponernos amorosos, podemos besuquiarnos y podemos tambien hacer bromimis y jugar juntos como siempre hacemos, te amo y espero disfrutemos este segundo mes juntitos <3 ❤️‍🔥❤️‍🔥❤️‍🔥",
+      errorPersonalizado: "ES LA ULTIMA AMOR SOLO AMAME NO TIENES QUE ELEGIR OTRA COSA AMAME Y YA HAZ TODO CONMIGO POR FAVOR SISIIS AISISISISIIS, aaa pero si fuera para defender a meridazzz 💤💤💤"
+    }
+
+  ],
+
+  sorpresaTitulo: "Una última cosita para ti tesoro💙",
+
+  sorpresa: `Mi Niña Ximenita 💙, si llegaste hasta aquí, quiero que sepas que esta página es una pequeña forma de decirte cuánto te aprecio y te amo. 🩵 Sé que nos quedarán muchísimas historias por escribir, lugares por conocer y momentos por recordar. Gracias por ser tú y solo tú. Tesorito mío, espero que este día la pases súper fruti fantástico, porque estaremos juntitos, abrazaditos. ¡Ay, sí, qué rico, amorcito lindo! Te quiero mucho y jamás olvides que tu niño lindo (o sea, yo, DUH) siempre te amará hasta los confines del multiverso. 💙✨
+
+La verdad, solo quiero decirte que te amo desde lo más profundo de mi corazón. ¡Fuera tan lindo poder tener las palabras necesarias para expresar cuánto te amo! Pero realmente creo que no hay forma. Mi amor es tan fuerte y tan inmenso que no hay manera de describirlo con simples y mundanas palabras; la única forma de demostrarlo es con el corazón, beibi, así como lo estoy haciendo yo ahorita. ¡Ay, sí! Espero que te guste esta página que hice con muchísimo amorcito, esfuerzo, sudor, sangre, chemenchito y cariño. :3 ¡TE AMOOOOOOOOOOOO! ESPERO QUE LA PASEMOS SÚPER BIEEEN! :DDDD 🩵💙🩵💙🩵💙`
+};
+
+
+document.title = `Para ${CONFIG.nombre} ☁️`;
+document.getElementById("pageTitle").textContent = `Para ${CONFIG.nombre}`;
+document.getElementById("subtitle").textContent = CONFIG.subtitulo;
+
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalContent = document.getElementById("modalContent");
+
+function openModal(title,node){
+  modalTitle.textContent = title;
+  modalContent.replaceChildren(node);
+  modal.classList.add("show");
+}
+
+function closeModal(){
+  modal.classList.remove("show");
+}
+
+document.getElementById("closeModal").addEventListener("click",closeModal);
+
+modal.addEventListener("click",e=>{
+  if(e.target===modal) closeModal();
+});
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){
+    closeModal();
+    document.getElementById("photoLightbox")?.classList.remove("show");
+  }
+});
+
+function paragraph(text){
+  const p=document.createElement("p");
+  p.textContent=text;
+  return p;
+}
+
+function showPhotoLightbox(src, alt){
+  let viewer=document.getElementById("photoLightbox");
+  if(!viewer){
+    viewer=document.createElement("div");
+    viewer.id="photoLightbox";
+    viewer.className="photo-lightbox";
+    viewer.setAttribute("role","dialog");
+    viewer.setAttribute("aria-modal","true");
+    const close=document.createElement("button");
+    close.className="photo-lightbox-close";
+    close.type="button";
+    close.setAttribute("aria-label","Cerrar imagen ampliada");
+    close.textContent="×";
+    const large=document.createElement("img");
+    large.id="photoLightboxImage";
+    viewer.append(close,large);
+    document.body.append(viewer);
+    close.addEventListener("click",()=>viewer.classList.remove("show"));
+    viewer.addEventListener("click",e=>{
+      if(e.target===viewer) viewer.classList.remove("show");
+    });
+  }
+  const large=viewer.querySelector("img");
+  large.src=src;
+  large.alt=alt || "Recuerdo ampliado";
+  viewer.classList.add("show");
+}
+
+document.getElementById("letterBtn").addEventListener("click",()=>{
+  playOpenActionSound();
+  openModal(CONFIG.tituloCarta, paragraph(CONFIG.carta));
+});
+
+const musicPlayer = document.getElementById("musicPlayer");
+const backgroundMusic = document.getElementById("backgroundMusic");
+const songVolumeSlider = document.getElementById("songVolumeSlider");
+const SONG_VOLUME_SCALE = 0.25;
+
+function updateSongVolume() {
+  backgroundMusic.volume = (Number(songVolumeSlider.value) / 100) * SONG_VOLUME_SCALE;
+}
+
+updateSongVolume();
+songVolumeSlider.addEventListener("input", updateSongVolume);
+
+const songTitle = document.getElementById("songTitle");
+const ambientMusic = document.getElementById("ambientMusic");
+const openActionSound = document.getElementById("openActionSound");
+const generalClickSound = document.getElementById("generalClickSound");
+const answerSound = document.getElementById("answerSound");
+const errorSound = document.getElementById("errorSound");
+
+const PAGE_AUDIO_SCALE = 0.82;
+const EFFECTS_VOLUME_SCALE = 0.72;
+const OPEN_ACTION_SOUND_VOLUME = 0.14;
+const GENERAL_CLICK_SOUND_VOLUME = 0.10836;
+const ANSWER_SOUND_VOLUME = 0.23716;
+const ERROR_SOUND_VOLUME = ANSWER_SOUND_VOLUME;
+
+updateSongVolume();
+
+const toggleSongBtn = document.getElementById("toggleSongBtn");
+const songProgress = document.getElementById("songProgress");
+const songCurrentTime = document.getElementById("songCurrentTime");
+const songDuration = document.getElementById("songDuration");
+
+function formatSongTime(seconds) {
+  if (!Number.isFinite(seconds)) return "0:00";
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
+  return `${mins}:${secs}`;
+}
+
+function updateSongControls() {
+  const duration = backgroundMusic.duration || 0;
+  songProgress.max = duration || 100;
+  songProgress.value = duration ? backgroundMusic.currentTime : 0;
+  songCurrentTime.textContent = formatSongTime(backgroundMusic.currentTime);
+  songDuration.textContent = formatSongTime(duration);
+  const playing = !backgroundMusic.paused;
+  toggleSongBtn.textContent = playing ? "Ⅱ" : "▶";
+  toggleSongBtn.setAttribute("aria-label", playing ? "Pausar canción" : "Reproducir canción");
+}
+
+backgroundMusic.addEventListener("timeupdate", updateSongControls);
+backgroundMusic.addEventListener("loadedmetadata", updateSongControls);
+backgroundMusic.addEventListener("play", updateSongControls);
+backgroundMusic.addEventListener("pause", updateSongControls);
+
+songProgress.addEventListener("input", () => {
+  if (Number.isFinite(backgroundMusic.duration)) {
+    backgroundMusic.currentTime = Number(songProgress.value);
+  }
+});
+
+toggleSongBtn.addEventListener("click", () => {
+  if (backgroundMusic.paused) {
+    if (!backgroundMusic.src) loadSong(currentSongIndex);
+    backgroundMusic.play().catch(() => {});
+  } else {
+    backgroundMusic.pause();
+  }
+});
+
+function isMusicPlayerSongPlaying() {
+  return !musicPlayer.classList.contains("hidden") && !backgroundMusic.paused;
+}
+
+function playCustomSound(audioElement, volume, extraScale = 1) {
+  if (!audioElement) return;
+  const sound = audioElement.cloneNode(true);
+  sound.volume = Math.max(0, Math.min(1, volume * PAGE_AUDIO_SCALE * EFFECTS_VOLUME_SCALE * extraScale));
+  sound.currentTime = 0;
+  sound.play().catch(() => {});
+}
+
+function playOpenActionSound() {
+  if (!openActionSound) return;
+
+  if (openActionSound.error || !openActionSound.currentSrc) {
+    playCustomSound(generalClickSound, GENERAL_CLICK_SOUND_VOLUME, isMusicPlayerSongPlaying() ? 0.72 : 1);
+    return;
+  }
+
+  playCustomSound(openActionSound, OPEN_ACTION_SOUND_VOLUME, isMusicPlayerSongPlaying() ? 0.72 : 1);
+}
+
+openActionSound.addEventListener("error", () => {
+  openActionSound.dataset.failed = "true";
+});
+
+function playGeneralClickSound() {
+  if (isMusicPlayerSongPlaying()) return;
+  playCustomSound(generalClickSound, GENERAL_CLICK_SOUND_VOLUME);
+}
+
+document.addEventListener("click", (event) => {
+  const target = event.target;
+  if (!(target instanceof Element)) return;
+
+  const photoViewerOpen = document.getElementById("photoLightbox")?.classList.contains("show");
+  if (modal.classList.contains("show") || photoViewerOpen) return;
+
+  if (
+    target.closest(".card") ||
+    target.closest("button") ||
+    target.closest(".modal") ||
+    target.closest(".modal-box") ||
+    target.closest(".envelope-card-item") ||
+    target.closest(".music-player") ||
+    target.closest(".ambient-tools") ||
+    target.closest("input") ||
+    target.closest("audio")
+  ) {
+    return;
+  }
+
+  playGeneralClickSound();
+});
+
+let currentSongIndex = 0;
+let ambientStarted = false;
+let usingOurSongs = false;
+let ambientFadeFrame = null;
+const AMBIENT_VOLUME = 0.1551287808;
+const AMBIENT_FADE_DURATION = 4000;
+const ambientVolumeSlider = document.getElementById("ambientVolumeSlider");
+const ambientPauseBtn = document.getElementById("ambientPauseBtn");
+let ambientUserPaused = false;
+
+function getAmbientTargetVolume() {
+  return AMBIENT_VOLUME * (Number(ambientVolumeSlider.value) / 100);
+}
+
+function syncAmbientVolume() {
+  if (!ambientMusic.paused && !ambientUserPaused) {
+    ambientMusic.volume = getAmbientTargetVolume();
+  }
+}
+
+ambientVolumeSlider.addEventListener("input", syncAmbientVolume);
+
+ambientPauseBtn.addEventListener("click", () => {
+  if (ambientMusic.paused || ambientUserPaused) {
+    ambientUserPaused = false;
+
+    ambientPauseBtn.textContent = "Ⅱ";
+    ambientPauseBtn.setAttribute("aria-label", "Pausar música de fondo");
+
+    if (!usingOurSongs && backgroundMusic.paused) {
+      ambientStarted = true;
+      ambientMusic.muted = false;
+      ambientMusic.volume = getAmbientTargetVolume();
+      ambientMusic.play().catch(() => {});
+    }
+  } else {
+    ambientUserPaused = true;
+    ambientMusic.pause();
+
+    ambientPauseBtn.textContent = "▶";
+    ambientPauseBtn.setAttribute("aria-label", "Reanudar música de fondo");
+  }
+});
+
+function fadeAmbientMusic(fromVolume = 0, toVolume = AMBIENT_VOLUME) {
+  if (ambientFadeFrame !== null) {
+    cancelAnimationFrame(ambientFadeFrame);
+  }
+
+  const startTime = performance.now();
+  ambientMusic.volume = fromVolume;
+
+  function updateVolume(now) {
+    const progress = Math.min((now - startTime) / AMBIENT_FADE_DURATION, 1);
+    ambientMusic.volume = fromVolume + (toVolume - fromVolume) * progress;
+
+    if (progress < 1) {
+      ambientFadeFrame = requestAnimationFrame(updateVolume);
+    } else {
+      ambientMusic.volume = toVolume;
+      ambientFadeFrame = null;
+    }
+  }
+
+  ambientFadeFrame = requestAnimationFrame(updateVolume);
+}
+
+function startAmbientMusic(withFade = true) {
+  if (usingOurSongs || !backgroundMusic.paused || ambientUserPaused) return;
+
+  ambientStarted = true;
+  ambientPauseBtn.textContent = "Ⅱ";
+  ambientPauseBtn.setAttribute("aria-label", "Pausar música de fondo");
+
+  ambientMusic.muted = true;
+  ambientMusic.volume = 0;
+
+  ambientMusic.play().then(() => {
+    ambientMusic.muted = false;
+
+    if (withFade) {
+      fadeAmbientMusic(0, getAmbientTargetVolume());
+    } else {
+      ambientMusic.volume = getAmbientTargetVolume();
+    }
+  }).catch(() => {
+    ambientStarted = false;
+  });
+}
+
+function pauseAmbientForSongs() {
+  if (ambientFadeFrame !== null) {
+    cancelAnimationFrame(ambientFadeFrame);
+    ambientFadeFrame = null;
+  }
+
+  ambientMusic.pause();
+}
+
+function resumeAmbientAfterSongs() {
+  usingOurSongs = false;
+  backgroundMusic.pause();
+  pauseAmbientForSongs();
+
+  if (!ambientUserPaused) {
+    ambientStarted = true;
+    ambientMusic.muted = false;
+    ambientMusic.volume = getAmbientTargetVolume();
+    ambientMusic.play().catch(() => {});
+  }
+}
+
+backgroundMusic.addEventListener("play", () => {
+  usingOurSongs = true;
+  pauseAmbientForSongs();
+});
+
+ambientMusic.addEventListener("play", () => {
+  if (usingOurSongs || !backgroundMusic.paused) {
+    ambientMusic.pause();
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  startAmbientMusic(true);
+});
+
+document.addEventListener("pointerdown", (e) => {
+  if (!ambientStarted && !e.target.closest("#musicBtn")) {
+    startAmbientMusic(true);
+  }
+}, { once: true });
+
+document.addEventListener("keydown", () => {
+  if (!ambientStarted) startAmbientMusic(true);
+}, { once: true });
+
+function loadSong(index) {
+  const song = CONFIG.canciones[index];
+  songTitle.textContent = `🎧 ${song.titulo}`;
+  backgroundMusic.src = song.archivo;
+  backgroundMusic.load();
+}
+
+document.getElementById("musicBtn").addEventListener("click",()=>{
+  usingOurSongs = true;
+  pauseAmbientForSongs();
+  backgroundMusic.pause();
+
+  musicPlayer.classList.remove("hidden");
+
+  const box=document.createElement("div");
+  box.append(paragraph(
+    "Puedes cambiar la cancionsita usando los botones de 'Anterior' y 'Siguiente' en el reproductor flotante de abajo beibi :3. 🎶🩵"
+  ));
+
+  playOpenActionSound();
+  openModal("Nuestras músicas :3 🎧",box);
+
+  if (!backgroundMusic.src) {
+    loadSong(currentSongIndex);
+  }
+
+  backgroundMusic.play().catch(()=>{});
+});
+
+document.getElementById("closeMusicBtn").addEventListener("click", () => {
+  musicPlayer.classList.add("hidden");
+
+  if (usingOurSongs) {
+    resumeAmbientAfterSongs();
+  } else {
+    backgroundMusic.pause();
+  }
+});
+
+document.getElementById("nextSongBtn").addEventListener("click", () => {
+  currentSongIndex = (currentSongIndex + 1) % CONFIG.canciones.length;
+  loadSong(currentSongIndex);
+  backgroundMusic.play().catch(()=>{});
+});
+
+document.getElementById("prevSongBtn").addEventListener("click", () => {
+  currentSongIndex = (currentSongIndex - 1 + CONFIG.canciones.length) % CONFIG.canciones.length;
+  loadSong(currentSongIndex);
+  backgroundMusic.play().catch(()=>{});
+});
+
+backgroundMusic.addEventListener("ended", () => {
+  currentSongIndex = (currentSongIndex + 1) % CONFIG.canciones.length;
+  loadSong(currentSongIndex);
+  backgroundMusic.play().catch(()=>{});
+});
+
+let isDragging = false;
+let startX, startY, initialLeft, initialTop;
+
+musicPlayer.addEventListener("mousedown", (e) => {
+  if (e.target.tagName === "BUTTON" || e.target.tagName === "AUDIO" || e.target.tagName === "INPUT" || e.target.closest("button") || e.target.closest("audio") || e.target.closest("input")) return;
+
+  isDragging = true;
+  startX = e.clientX;
+  startY = e.clientY;
+
+  const rect = musicPlayer.getBoundingClientRect();
+  musicPlayer.style.left = rect.left + "px";
+  musicPlayer.style.top = rect.top + "px";
+  musicPlayer.style.bottom = "auto";
+  musicPlayer.style.transform = "none";
+
+  initialLeft = rect.left;
+  initialTop = rect.top;
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+  const dx = e.clientX - startX;
+  const dy = e.clientY - startY;
+  musicPlayer.style.left = (initialLeft + dx) + "px";
+  musicPlayer.style.top = (initialTop + dy) + "px";
+});
+
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+});
+
+document.getElementById("photosBtn").addEventListener("click",()=>{
+  const box=document.createElement("div");
+  box.append(paragraph(CONFIG.textoFotos));
+  const grid=document.createElement("div");
+  grid.className="photo-grid";
+
+  CONFIG.fotos.forEach((src,i)=>{
+    const frame=document.createElement("div");
+    frame.className="photo-frame";
+    const img=document.createElement("img");
+    img.alt=`Recuerdo ${i+1}`;
+    const placeholder=document.createElement("div");
+    placeholder.className="photo-placeholder";
+    placeholder.textContent=`No se pudo cargar la imagen ${i+1}. Comprueba que el archivo se llame ${src}.`;
+    placeholder.style.display="none";
+    const base=src.replace(/\.(jpg|jpeg|png|webp)$/i,"");
+    const candidates=[src,`${base}.jpeg`,`${base}.png`,`${base}.webp`,`${base}.JPG`,`${base}.JPEG`,`${base}.PNG`,`${base}.WEBP`,`${base.replace(/(foto)([0-9]+)/i,"$1 $2")}.jpg`,`${base.replace(/(foto)([0-9]+)/i,"$1_$2")}.jpg`];
+    let candidateIndex=0;
+
+    const tryNextImage=()=>{
+      candidateIndex++;
+      if(candidateIndex<candidates.length){
+        img.src=candidates[candidateIndex];
+      }else{
+        img.style.display="none";
+        placeholder.style.display="flex";
+      }
+    };
+
+    img.onerror=tryNextImage;
+
+    img.addEventListener("click",()=>{
+      if(img.complete && img.naturalWidth>0){
+        const rect=img.getBoundingClientRect();
+        crearExplosionFotos(rect.left + rect.width/2, rect.top + rect.height/2);
+        showPhotoLightbox(img.src,img.alt);
+      }
+    });
+
+    img.src=candidates[0];
+    frame.append(img,placeholder);
+
+    const caption=document.createElement("p");
+    caption.className="photo-caption";
+    caption.textContent=CONFIG.descripcionesFotos[i] || "";
+    frame.append(caption);
+    grid.append(frame);
+  });
+
+  box.append(grid);
+
+  playOpenActionSound();
+  openModal("Nuestros recuerdos 📸",box);
+});
+
+const CLICK_EFFECT_IMAGE = "efecto-click.png";
+
+function mostrarImagenClick(x, y) {
+  const sticker = document.createElement("img");
+  sticker.className = "click-sticker";
+  sticker.src = CLICK_EFFECT_IMAGE;
+  sticker.alt = "";
+  sticker.draggable = false;
+  sticker.onerror = () => sticker.remove();
+  sticker.style.left = x + "px";
+  sticker.style.top = y + "px";
+  document.body.appendChild(sticker);
+  setTimeout(() => sticker.remove(), 1750);
+}
+
+function crearExplosionFotos(x, y) {
+  const explosion = document.createElement("div");
+  explosion.className = "envelope-explosion photo-explosion";
+  explosion.style.left = `${x}px`;
+  explosion.style.top = `${y}px`;
+  const symbols = ["🩵", "✨", "♡", "🌸", "✦", "💙", "❀", "💫", "🤍", "✧", "🩷", "⭐"];
+
+  for (let index = 0; index < 20; index++) {
+    const sparkle = document.createElement("span");
+    const angle = (Math.PI * 2 * index) / 20;
+    const distance = 75 + (index % 4) * 24;
+    sparkle.className = "envelope-burst-spark";
+    sparkle.textContent = symbols[index % symbols.length];
+    sparkle.style.setProperty("--burst-x", `${Math.cos(angle) * distance}px`);
+    sparkle.style.setProperty("--burst-y", `${Math.sin(angle) * distance}px`);
+    sparkle.style.setProperty("--burst-rotate", `${(index % 2 ? 1 : -1) * (25 + index * 5)}deg`);
+    sparkle.style.setProperty("--spark-size", `${19 + (index % 3) * 7}px`);
+    explosion.appendChild(sparkle);
+  }
+
+  document.body.appendChild(explosion);
+  setTimeout(() => explosion.remove(), 1550);
+}
+
+function crearExplosionSobres(card) {
+  const rect = card.getBoundingClientRect();
+  const explosion = document.createElement("div");
+  explosion.className = "envelope-explosion";
+  explosion.style.left = `${rect.left + rect.width / 2}px`;
+  explosion.style.top = `${rect.top + Math.min(rect.height * 0.42, 70)}px`;
+
+  const symbols = ["✨", "💗", "✦", "🩵", "💕", "🌸", "💖", "⭐", "✧", "💫", "🩷", "❀"];
+
+  for (let index = 0; index < 24; index++) {
+    const sparkle = document.createElement("span");
+    const angle = (Math.PI * 2 * index) / 24 + (index % 3) * 0.08;
+    const distance = 105 + (index % 4) * 28;
+    sparkle.className = "envelope-burst-spark";
+    sparkle.textContent = symbols[index % symbols.length];
+    sparkle.style.setProperty("--burst-x", `${Math.cos(angle) * distance}px`);
+    sparkle.style.setProperty("--burst-y", `${Math.sin(angle) * distance}px`);
+    sparkle.style.setProperty("--burst-rotate", `${(index % 2 ? 1 : -1) * (35 + index * 4)}deg`);
+    sparkle.style.setProperty("--spark-size", `${22 + (index % 4) * 8}px`);
+    explosion.appendChild(sparkle);
+  }
+
+  document.body.appendChild(explosion);
+  setTimeout(() => explosion.remove(), 1550);
+}
+
+document.getElementById("envelopeBtn").addEventListener("click",()=>{
+  const box=document.createElement("div");
+  box.append(paragraph("Pulsa sobre cualquier sobre para descubrir su mensajito con una explosión de brillo. 💗"));
+
+  CONFIG.sobres.forEach((item) => {
+    const cardItem = document.createElement("div");
+    cardItem.className = "envelope-card-item";
+
+    const header = document.createElement("div");
+    header.className = "envelope-header";
+    header.innerHTML = `<span>✉️</span> <span>${item.titulo}</span>`;
+
+    const body = document.createElement("div");
+    body.className = "envelope-body hidden";
+    body.textContent = item.mensaje;
+
+    cardItem.append(header, body);
+
+    cardItem.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const isHidden = body.classList.contains("hidden");
+
+      if (isHidden) {
+        body.classList.remove("hidden");
+        body.classList.add("explode-shine");
+        header.innerHTML = `<span>💖</span> <span>${item.titulo}</span>`;
+        crearExplosionSobres(cardItem);
+        playOpenActionSound();
+      } else {
+        body.classList.remove("explode-shine");
+        body.classList.add("hidden");
+        header.innerHTML = `<span>✉️</span> <span>${item.titulo}</span>`;
+      }
+    });
+
+    box.append(cardItem);
+  });
+
+  playOpenActionSound();
+  openModal("Sobres para ti amorsh ✉️",box);
+});
+
+document.getElementById("quizBtn").addEventListener("click",()=>{
+  let index=0;
+  let score=0;
+  const box=document.createElement("div");
+  const progress=paragraph("");
+  const question=document.createElement("h3");
+  question.style.color="#5489b6";
+  const answers=document.createElement("div");
+  const feedback=paragraph("");
+
+  function render(){
+    progress.textContent=`Pregunta ${index+1} de ${CONFIG.preguntas.length}`;
+    const q=CONFIG.preguntas[index];
+    question.textContent=q.pregunta;
+    answers.replaceChildren();
+    feedback.textContent="";
+
+    q.opciones.forEach((option,i)=>{
+      const b=document.createElement("button");
+      b.className="answer";
+      b.textContent=option;
+
+      b.addEventListener("click",()=>{
+        [...answers.children].forEach(x=>x.disabled=true);
+
+        if(i===q.correcta){
+          score++;
+          playCustomSound(answerSound, ANSWER_SOUND_VOLUME);
+          feedback.textContent=q.correctaTexto || "¡Excelente amorshito lindo :D! 🩵🖤";
+        }else{
+          playCustomSound(errorSound, ERROR_SOUND_VOLUME);
+
+          if(q.errorPorOpcion && q.errorPorOpcion[i]){
+            feedback.textContent=q.errorPorOpcion[i];
+          }else if(q.errorNormalTexto){
+            feedback.textContent=q.errorNormalTexto;
+          }else if(q.errorPersonalizado){
+            feedback.textContent=q.errorPersonalizado;
+          }else{
+            feedback.textContent="¡Esa era una de las opciones! La respuesta correcta era... chan chan chan chaaaan: "+q.opciones[q.correcta];
+          }
+        }
+
+        const next=document.createElement("button");
+        next.className="btn quiz-next";
+        next.textContent=index===CONFIG.preguntas.length-1?"Ver resultado":"Siguiente";
+
+        next.addEventListener("click",()=>{
+          index++;
+          if(index<CONFIG.preguntas.length){
+            render();
+          }else{
+            box.replaceChildren(paragraph(`Terminasteeee amorshitoooo, tu resultado fue ${score} de 10. Espero hayas disfrutado este jueguito tesorito y no olvides cuanto te amo, espero un mensajito de que te parecio este pequeño reto para ti beibi >:) TE AMOOOO 😻😻😻`));
+          }
+        });
+
+        answers.append(next);
+      });
+
+      answers.append(b);
+    });
+  }
+
+  box.append(progress,question,answers,feedback);
+  render();
+
+  playOpenActionSound();
+  openModal("Un pequeño jueguito :3 🧸",box);
+});
+
+document.getElementById("surpriseBtn").addEventListener("click",()=>{
+  const box=document.createElement("div");
+  const intro=paragraph("Esta sorpresa es para ti. Pulsa el botón cuando quieras descubrirla. ✨");
+  const reveal=document.createElement("button");
+  reveal.className="btn";
+  reveal.textContent="Descubrir nuestra sorpresa :D 🎁";
+
+  reveal.addEventListener("click",(e)=>{
+    mostrarImagenClick(e.clientX, e.clientY);
+    box.replaceChildren(paragraph(CONFIG.sorpresa));
+  });
+
+  box.append(intro,reveal);
+
+  playOpenActionSound();
+  openModal(CONFIG.sorpresaTitulo,box);
+});
+
+function updateCounter(){
+  const start = new Date(CONFIG.fechaInicioContador);
+  const now = new Date();
+  if(Number.isNaN(start.getTime())) return;
+
+  let years = now.getFullYear() - start.getFullYear();
+  let months = now.getMonth() - start.getMonth();
+  let days = now.getDate() - start.getDate();
+  let hours = now.getHours() - start.getHours();
+  let minutes = now.getMinutes() - start.getMinutes();
+  let seconds = now.getSeconds() - start.getSeconds();
+
+  if (seconds < 0) {
+    seconds += 60;
+    minutes--;
+  }
+  if (minutes < 0) {
+    minutes += 60;
+    hours--;
+  }
+  if (hours < 0) {
+    hours += 24;
+    days--;
+  }
+  if (days < 0) {
+    months--;
+    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  let totalMonths = Math.max(0, years * 12 + months);
+  let safeDays = Math.max(0, days);
+
+  let ms = Math.max(0, now - start);
+  ms %= 86400000;
+  const h = Math.floor(ms / 3600000);
+  ms %= 3600000;
+  const m = Math.floor(ms / 60000);
+  const s = Math.floor(ms % 60000 / 1000);
+
+  document.getElementById("months").textContent = totalMonths;
+  document.getElementById("days").textContent = safeDays;
+  document.getElementById("hours").textContent = h;
+  document.getElementById("minutes").textContent = m;
+  document.getElementById("seconds").textContent = s;
+}
+
+function updateExactTimeNote(){
+  const now = new Date();
+  const nowInMerida = new Date(now.toLocaleString("en-US", { timeZone: "America/Merida" }));
+
+  let target = new Date(nowInMerida);
+  target.setHours(21, 39, 0, 0);
+
+  // Si ya pasaron las 21:39 de hoy, cuenta para las 21:39 de mañana.
+  if (target <= nowInMerida) {
+    target.setDate(target.getDate() + 1);
+  }
+
+  const difference = Math.max(0, target - nowInMerida);
+
+  const hours = Math.floor(difference / 3600000);
+  const minutes = Math.floor((difference % 3600000) / 60000);
+  const seconds = Math.floor((difference % 60000) / 1000);
+
+  document.getElementById("exactTimeNote").innerHTML =
+    `Faltan <b>${hours}</b> horas, <b>${minutes}</b> minutos y <b>${seconds}</b> segundos para que sean las <b>21:39</b>, la hora exacta en que comenzó nuestra historia 💙`;
+}
+
+updateCounter();
+updateExactTimeNote();
+setInterval(updateCounter,1000);
+setInterval(updateExactTimeNote,1000);
+
+function floatingHeart(){
+  const el=document.createElement("span");
+  el.className="float-heart";
+  el.textContent=["💋","🖤","🩵","💕","☁️"][Math.floor(Math.random()*5)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.fontSize=(15+Math.random()*19)+"px";
+  el.style.animationDuration=(6+Math.random()*4)+"s";
+  document.body.append(el);
+  setTimeout(()=>el.remove(),10500);
+}
+
+setInterval(floatingHeart,900);
+
+document.addEventListener("click", e => {
+  if (!(e.target instanceof Element)) return;
+  const photosSectionOpen = modal.classList.contains("show") && modalTitle.textContent.includes("Nuestros recuerdos");
+  if (photosSectionOpen || e.target.closest(".photo-grid, .photo-lightbox")) return;
+  if (
+    e.target.closest("button, .modal-box, .envelope-card-item")
+  ) return;
+  mostrarImagenClick(e.clientX, e.clientY);
+});
+
+</script>
+
+</body>
+</html>
